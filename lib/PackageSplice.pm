@@ -41,7 +41,7 @@ sub build {
 	my $splice_dir = $self->splice_dir();
 	
 	#ppc
-	foreach my $arch (qw(i386 x86_64 ppc7400 ppc64)) {
+	foreach my $arch (qw(i386 x86_64)) {
 		
 		$self->cd_packagesrcdir();
 		$self->cleanup_srcdir() if (-e "Makefile");

@@ -5,13 +5,13 @@ use warnings;
 
 use base qw(Package);
 
-our $VERSION = '1.2.22';
+our $VERSION = '1.4.3';
 
 
 sub base_url {
-	return "http://switch.dl.sourceforge.net/sourceforge/libpng";
+#	return "http://switch.dl.sourceforge.net/sourceforge/libpng";
+	return "ftp://ftp.simplesystems.org/pub/png/src";
 }
-
 
 sub packagename {
 	return "libpng-$VERSION";

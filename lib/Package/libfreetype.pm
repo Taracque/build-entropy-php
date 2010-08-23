@@ -5,12 +5,12 @@ use warnings;
 
 use base qw(Package);
 
-our $VERSION = '2.3.5';
+our $VERSION = '2.4.2';
 
 
 
 sub base_url {
-	return "http://switch.dl.sourceforge.net/sourceforge/freetype";
+	return "http://netcologne.dl.sourceforge.net/project/freetype/freetype2/$VERSION/";
 }
 
 

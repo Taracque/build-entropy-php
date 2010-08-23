@@ -6,7 +6,7 @@ use warnings;
 use base qw(PackageSplice);
 
 # make sure to check version number in base_url path and PECL wrapper in build_arch_post, 
-our $VERSION = '7.0.3';
+our $VERSION = '7.0.5';
 
 
 sub base_url {

@@ -78,7 +78,7 @@ sub create_package {
 	my @package_filelist = $self->package_filelist();
 	my @missing = grep {! -e $_} map {bsd_glob("$prefix/$_")} @package_filelist;
 	if (@missing) {
-		Carp::confess("$self: files in package list but missing on disk: @missing, filelist: @package_filelist");
+		Carp::croak("files in package list but missing on disk: @missing");
 	}
 
 	my $list = join(' ', @package_filelist);
@@ -324,7 +324,7 @@ sub make_flags {
 
 sub make_command {
 	my $self = shift @_;
-	return "MACOSX_DEPLOYMENT_TARGET=10.5 make " . $self->make_flags();
+	return "MACOSX_DEPLOYMENT_TARGET=10.6 make " . $self->make_flags();
 }
 
 
@@ -429,7 +429,7 @@ sub php_build_pre {
 
 
 sub supported_archs {
-	return qw(i386 x86_64 ppc7400 ppc64);
+	return qw(i386 x86_64);
 }
 
 
@@ -463,7 +463,7 @@ sub php_build_arch_pre {
 
 
 sub all_archs {
-	return qw(i386 x86_64 ppc7400 ppc64);
+	return qw(i386 x86_64);
 }
 
 

@@ -9,9 +9,8 @@ our $VERSION = '2.5.8';
 
 
 sub base_url {
-	return "http://dl.sourceforge.net/sourceforge/mcrypt";
+	return "http://ignum.dl.sourceforge.net/project/mcrypt/Libmcrypt/$VERSION";
 }
-
 
 sub packagename {
 	return "libmcrypt-" . $VERSION;

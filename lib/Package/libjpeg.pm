@@ -5,7 +5,7 @@ use warnings;
 
 use base qw(Package);
 
-our $VERSION = '6b';
+our $VERSION = '8b';
 
 
 
@@ -58,8 +58,9 @@ sub install {
 	return undef unless ($self->SUPER::install(@_));
 	
 	$self->cd_packagesrcdir();
-	$self->shell("make install-lib");
-	$self->shell("make install-headers");
+#	$self->shell("make install-lib");
+#	$self->shell("make install-headers");
+	$self->shell("make install");
 
 }
 
