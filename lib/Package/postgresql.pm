@@ -3,7 +3,7 @@ package Package::postgresql;
 use strict;
 use warnings;
 
-use base qw(Package);
+use base qw(PackageSplice);
 
 our $VERSION = '8.4.4';
 

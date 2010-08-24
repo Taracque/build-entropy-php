@@ -56,6 +56,10 @@ sub php_extension_configure_flags {
 }
 
 
+sub patchfiles {
+	my $self = shift @_;
+	return qw(imap-make.patch);
+}
 
 
 

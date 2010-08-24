@@ -399,8 +399,8 @@ sub cc {
 	# this is a hack to override the shipping iconv.h header file with the one
 	# from the darwin source. Fix taken from:
 	# http://gorn.ch/archive/2007/11/01/leopard-native-apache-with-custom-64bit-php.html
-	my $iconv_include_override_dir = $self->config()->basedir() . "/extras/iconv/leopard-iconv-include-override";
-	return "cc -I$iconv_include_override_dir";
+	# my $iconv_include_override_dir = $self->config()->basedir() . "/extras/iconv/leopard-iconv-include-override";
+	# return "cc -I$iconv_include_override_dir";
 	return "cc";
 }
 

@@ -5,11 +5,11 @@ use warnings;
 
 use base qw(Package);
 
-our $VERSION = '2.6.30';
+our $VERSION = '2.7.7';
 
 
 sub dependency_names {
-	return qw(iconv);
+	return qw(iconv icu);
 }
 
 

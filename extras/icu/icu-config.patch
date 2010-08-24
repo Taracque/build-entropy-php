@@ -1,0 +1,12 @@
+diff -ru source/config/mh-darwin source/config/mh-darwin
+--- source/config/mh-darwin	2010-04-28 17:27:52.000000000 +0200
++++ source/config/mh-darwin	2010-04-28 17:27:52.000000000 +0200
+@@ -25,7 +25,7 @@
+ SHLIB.cc=	$(CXX) -dynamiclib -dynamic $(CXXFLAGS) $(LDFLAGS) $(LD_SOOPTIONS)
+ 
+ ## Compiler switches to embed a library name and version information
+-LD_SONAME = -Wl,-compatibility_version -Wl,$(SO_TARGET_VERSION_MAJOR) -Wl,-current_version -Wl,$(SO_TARGET_VERSION) -install_name $(notdir $(MIDDLE_SO_TARGET))
++LD_SONAME = -Wl,-compatibility_version -Wl,$(SO_TARGET_VERSION_MAJOR) -Wl,-current_version -Wl,$(SO_TARGET_VERSION) -install_name $(libdir)/$(notdir $(MIDDLE_SO_TARGET))
+ 
+ ## Compiler switch to embed a runtime search path
+ LD_RPATH=

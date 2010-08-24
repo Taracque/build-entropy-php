@@ -85,7 +85,6 @@ sub configure_flags {
  		'--enable-mbstring',
  		'--enable-bcmath',
  		'--enable-calendar',
- 		'--enable-intl',
  		'--with-iodbc',
  		'--with-mhash',
 		'--with-mysql=mysqlnd',
@@ -97,6 +96,8 @@ sub configure_flags {
 
 #		'--with-snmp=/usr', #32 bit only in leopard
 
+# 		'--enable-intl', 
+#		'--with-icu-dir=/usr/local/php5',
 
 # 		"--enable-dbx",
 # 		"--enable-dbase",
@@ -287,8 +288,8 @@ sub create_distimage {
 
 sub patchfiles {
 	my $self = shift @_;
-#	return qw(php-entropy.patch);
-	return qw(php-entropy.patch php-entropy-imap.patch php-mysqlnd-ppc64.patch);
+	return qw(php-entropy.patch ltmain-echo.patch);
+#	return qw(php-entropy.patch php-entropy-imap.patch php-mysqlnd-ppc64.patch);
 }
 
 
@@ -336,8 +337,8 @@ sub package_filelist {
 		entropy-php.conf
 		libphp5.so
 		etc/pear.conf.default
-		lib/libxml2*.dylib lib/libpng*.dylib lib/libfreetype*.dylib
-		lib/libiconv*.dylib
+		lib/libpng*.dylib lib/libfreetype*.dylib
+		lib/libxml2*.dylib lib/libiconv*.dylib
 		bin/php* bin/pear bin/pecl bin/peardev bin/activate-*
 		lib/php
 		lib/build
@@ -345,7 +346,7 @@ sub package_filelist {
 		include/php
 		php.d/10-extension_dir.ini
 	);
-	
+
 	# lib/libt1*.dylib
 }
 
