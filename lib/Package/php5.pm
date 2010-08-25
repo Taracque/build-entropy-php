@@ -339,6 +339,7 @@ sub package_filelist {
 		etc/pear.conf.default
 		lib/libpng*.dylib lib/libfreetype*.dylib
 		lib/libxml2*.dylib lib/libiconv*.dylib
+		lib/libjpeg*.dylib
 		bin/php* bin/pear bin/pecl bin/peardev bin/activate-*
 		lib/php
 		lib/build
