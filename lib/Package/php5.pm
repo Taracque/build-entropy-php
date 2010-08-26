@@ -36,7 +36,7 @@ sub dependency_names {
 	#tidy 
 	#ming
 	#mysql (replaced by mysqlnd)
-	return qw(iconv pdflib_commercial mssql memcache imapcclient libxml2 libxslt gettext curl libpng libjpeg libfreetype  postgresql mcrypt);
+	return qw(iconv pdflib_commercial mssql memcache imapcclient libxml2 libxslt gettext curl libpng libjpeg libfreetype  postgresql mcrypt aspell);
 }
 
 sub subpath_for_check {
@@ -90,14 +90,15 @@ sub configure_flags {
 		'--with-mysql=mysqlnd',
 		'--with-mysqli=mysqlnd',
 		'--with-pdo-mysql=mysqlnd',
+		'--with-tidy',
 
 # 		'--enable-cgi',
 	);
 
-#		'--with-snmp=/usr', #32 bit only in leopard
-
-# 		'--enable-intl', 
+# 		'--enable-intl',
 #		'--with-icu-dir=/usr/local/php5',
+
+#		'--with-snmp=/usr', #32 bit only in leopard
 
 # 		"--enable-dbx",
 # 		"--enable-dbase",
@@ -288,7 +289,7 @@ sub create_distimage {
 
 sub patchfiles {
 	my $self = shift @_;
-	return qw(php-entropy.patch ltmain-echo.patch);
+	return qw(php-entropy.patch ltmain-echo.patch php-tidy.patch);
 #	return qw(php-entropy.patch php-entropy-imap.patch php-mysqlnd-ppc64.patch);
 }
 
@@ -339,7 +340,7 @@ sub package_filelist {
 		etc/pear.conf.default
 		lib/libpng*.dylib lib/libfreetype*.dylib
 		lib/libxml2*.dylib lib/libiconv*.dylib
-		lib/libjpeg*.dylib
+		lib/libjpeg*.dylib lib/libaspell*.dylib
 		bin/php* bin/pear bin/pecl bin/peardev bin/activate-*
 		lib/php
 		lib/build
@@ -348,7 +349,7 @@ sub package_filelist {
 		php.d/10-extension_dir.ini
 	);
 
-	# lib/libt1*.dylib
+	# lib/libt1*.dylib lib/libicu*.dylib
 }
 
 sub package_excludelist {
@@ -370,7 +371,7 @@ sub create_metapackage {
 	my $version = $self->config()->version() . '-' . $self->config()->release();
 	my $pmdoc = $self->extras_path('distribution-package/entropy-php.pmdoc');
 	my $resources = $self->extras_path('distribution-package/resources');
-	$self->shell(qq!rm -f '/tmp/Entropy PHP '*.pkg!);
+	$self->shell(qq!rm -rf '/tmp/Entropy PHP '*.pkg!);
 	$self->shell({silent => 0}, "/Developer/Applications/Utilities/PackageMaker.app/Contents/MacOS/PackageMaker -v --doc $pmdoc --out '/tmp/Entropy PHP $version.pkg' --version $version --title 'Entropy PHP $version'");
 	$self->shell('open /tmp/');
 }

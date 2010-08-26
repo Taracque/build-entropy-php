@@ -1,0 +1,11 @@
+diff -ru php-5.3.3/configure php-5.3.3.entropy/configure 
+--- php-5.3.3/configure	2010-08-25 22:46:41.000000000 +0200
++++ php-5.3.3.entropy/configure	2010-08-25 22:55:00.000000000 +0200
+@@ -4133,6 +4133,7 @@
+     ;;
+   *darwin*)
+     MH_BUNDLE_FLAGS="-dynamic -twolevel_namespace -bundle -bundle_loader $APXS_HTTPD"
++    EXTRA_LIBS="/usr/lib/gcc/i686-apple-darwin10/4.2.1/libstdc++.dylib"
+     
+   PHP_VAR_SUBST="$PHP_VAR_SUBST MH_BUNDLE_FLAGS"
+ 

@@ -36,8 +36,8 @@ my $config = Config->new(
 		},
 	},
 	version              => '5.3.3',
-	release              => 2,
-	debug                => 1,
+	release              => 3,
+	debug                => 0,
 );
 
 # my $php5 = Package::php5->new(config => $config, variant => 'apache2');

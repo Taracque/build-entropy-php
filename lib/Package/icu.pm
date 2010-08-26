@@ -17,7 +17,10 @@ sub packagename {
 }
 
 sub filename {
-	return "icu4c-4_5_1-src.tgz";
+	my $self = shift @_;
+	my $vers = $VERSION;
+	$vers =~ s/\./_/g;
+	return "icu4c-" . $vers . "-src.tgz";
 }
 
 sub subpath_for_check {

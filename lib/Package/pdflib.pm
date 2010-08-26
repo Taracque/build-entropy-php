@@ -11,9 +11,8 @@ our $VERSION = '7.0.5';
 
 sub base_url {
 	my $self = shift;
-	return "http://www.pdflib.com/binaries/PDFlib/703";
+	return "http://www.pdflib.com/binaries/PDFlib/705";
 }
-
 
 sub filename {
 	my ($self) = shift;

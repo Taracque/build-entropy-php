@@ -23,12 +23,6 @@ sub subpath_for_check {
 }
 
 
-sub configure_flags {
-	my $self = shift @_;
-	return $self->SUPER::configure_flags(@_) . " --without-x";
-}
-
-
 sub php_extension_configure_flags {
 	my $self = shift @_;
 	my (%args) = @_;
