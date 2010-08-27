@@ -5,11 +5,11 @@ use warnings;
 
 use base qw(PackageSplice);
 
-our $VERSION = '5.1.0';
+our $VERSION = '5.1.2';
 
 
 sub base_url {
-	return "ftp://ftp.foolabs.com/pub/xpdf";
+	return "ftp://sunsite.unc.edu/pub/Linux/libs/graphics";
 }
 
 
