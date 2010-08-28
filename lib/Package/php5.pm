@@ -39,6 +39,10 @@ sub dependency_names {
 	return qw(iconv pdflib_commercial mssql memcache imapcclient libxml2 libxslt gettext curl libpng libjpeg libfreetype  postgresql mcrypt aspell);
 }
 
+sub dependant_names {
+	return qw(apc xdebug);
+}
+
 sub subpath_for_check {
 	return "libphp5.so";
 }
@@ -102,7 +106,6 @@ sub configure_flags {
 
 # 		"--enable-dbx",
 # 		"--enable-dbase",
-# 		"--with-bz2=/usr",
 # 		"--enable-fastcgi",
 # 		"--enable-cgi",
 
@@ -135,7 +138,7 @@ sub configure_flags {
 
 
 
-sub build_preconfigure {
+sub build_prebuild {
 	my $self = shift @_;
 	my (%args) = @_;
 
@@ -270,19 +273,45 @@ sub install {
 sub create_dso_ini_files {
 	my $self = shift @_;
 
-	my @dso_names = grep {$_} map {$_->php_dso_extension_names()} $self->dependencies();
 	my $prefix = $self->config()->prefix();
 	my $extdir = $self->config()->extdir();
+
+	my @dso_names = grep {$_} map {$_->php_dso_extension_names()} $self->dependencies();
 	$self->shell({silent => 0}, "echo 'extension=$_.so' > $prefix/php.d/50-extension-$_.ini") foreach (@dso_names);
+
+	my @zend_names = grep {$_} map {$_->php_zend_extension_names()} $self->dependencies();
+	$self->shell({silent => 0}, "echo 'zend_extension=$prefix/$extdir/$_.so' > $prefix/php.d/50-extension-$_.ini") foreach (@zend_names);
+
+	@dso_names = grep {$_} map {$_->php_dso_extension_names()} $self->dependants();
+	$self->shell({silent => 0}, "echo 'extension=$_.so' > $prefix/php.d/50-extension-$_.ini") foreach (@dso_names);
+
+	my @zend_names = grep {$_} map {$_->php_zend_extension_names()} $self->dependants();
+	$self->shell({silent => 0}, "echo 'zend_extension=$prefix/$extdir/$_.so' > $prefix/php.d/50-extension-$_.ini") foreach (@zend_names);
+
 	$self->shell({silent => 0}, qq!echo 'extension_dir=$prefix/$extdir' > $prefix/php.d/10-extension_dir.ini!);
 }
 
 
+# install packages, what needs to be installed AFTER php installation
+sub post_install {
+	my $self = shift @_;
+	return undef if ($self->is_built());
+	
+	my $path = $self->extras_path("ltmain-echo-back.patch");
+	$self->shell("patch -p0 < $path");
+	
+	$self->unpack();
+	$_->build() foreach $self->dependants();
+	return 1;
+}
 
 
 sub create_distimage {
 	my $self = shift @_;
 	$self->install();
+	
+	$self->post_install();
+	
 	$self->create_package();
 }
 

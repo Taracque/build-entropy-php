@@ -14,7 +14,7 @@ sub download {
 	return if ($self->is_downloaded());
 
 	my $dp = $self->download_path();
-	my $dmg = "PDFlib-7.0.5-MacOSX-Universal-php.dmg";
+	my $dmg = "PDFlib-7.0.5-MacOSX-10.5-Universal-php.dmg";
 	my $mountpoint = '/tmp/'.$self->filename();
 
 	$self->log("downloading commercial PDFlib");

@@ -1,0 +1,11 @@
+diff -ru /usr/local/php5.orig/lib/build/ltmain.sh /usr/local/php5/lib/build/ltmain.sh
+--- /usr/local/php5.orig/lib/build/ltmain.sh	2010-08-28 00:28:17.000000000 +0200
++++ /usr/local/php5/lib/build/ltmain.sh	2010-08-28 00:29:56.000000000 +0200
+@@ -60,7 +60,6 @@
+ BIN_SH=xpg4; export BIN_SH # for Tru64
+ DUALCASE=1; export DUALCASE # for MKS sh
+ 
+-echo="$ECHO"
+ # Check that we have a working $echo.
+ if test "X$1" = X--no-reexec; then
+   # Discard the --no-reexec flag, and continue.

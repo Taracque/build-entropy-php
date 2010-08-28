@@ -45,9 +45,11 @@ sub build {
 	return unless ($self->SUPER::build(@_));
 	my (%args) = @_;
 
-	$self->build_preconfigure();
+	$self->build_prebuild();
 
 	$self->cd_packagesrcdir();
+
+	$self->build_preconfigure();
 
 	$self->build_configure();
 
@@ -77,6 +79,12 @@ sub build_configure {
 }
 
 
+
+
+sub build_prebuild {
+	my $self = shift @_;
+	my (%args) = @_;
+}
 
 
 sub build_preconfigure {

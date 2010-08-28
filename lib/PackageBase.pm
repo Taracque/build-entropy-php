@@ -22,6 +22,15 @@ sub init {
 		push @{$self->{dependencies}}, $class->new(config => $self->config());
 	}
 
+	$self->{dependants} ||= [];
+
+	foreach my $name ($self->dependant_names()) {
+		my $class = 'Package::' . $name;
+		eval "use $class";
+		die if ($@);
+		push @{$self->{dependants}}, $class->new(config => $self->config());
+	}
+
 }
 
 
@@ -69,6 +78,9 @@ sub create_package {
 	return undef if ($self->is_packaged());
 
 	$_->create_package() foreach $self->dependencies();
+
+	$_->install() foreach $self->dependants();
+	$_->create_package() foreach $self->dependants();
 
 	my $prefix = $self->config()->prefix();
 
@@ -238,11 +250,20 @@ sub dependency_names {
 }
 
 
+sub dependant_names {
+	return ();
+}
+
+
 sub dependencies {
 	my $self = shift;
 	return @{$self->{dependencies}};
 }
 
+sub dependants {
+	my $self = shift;
+	return @{$self->{dependants}};
+}
 
 sub is_downloaded {
 	my $self = shift @_;
@@ -446,6 +467,14 @@ sub php_extension_configure_flags {
 }
 
 
+sub php_zend_extension_names {
+	return undef;
+}
+
+sub php_zend_extension_paths {
+	my $self = shift;
+	return map {$self->config()->extdir_path("$_.so")} $self->php_zend_extension_names();
+}
 
 sub php_dso_extension_names {
 	return undef;
