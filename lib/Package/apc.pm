@@ -5,7 +5,7 @@ use warnings;
 
 use base qw(PackageSplice);
 
-our $VERSION = '3.1.4';
+our $VERSION = '3.1.6';
 
 sub base_url {
 	return "http://pecl.php.net/get";

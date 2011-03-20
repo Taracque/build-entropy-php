@@ -95,8 +95,8 @@ sub configure_flags {
 		'--with-mysqli=mysqlnd',
 		'--with-pdo-mysql=mysqlnd',
 		'--with-tidy',
-
-# 		'--enable-cgi',
+#		'--enable-cgi',
+#		'--enable-fastcgi',
 	);
 
 # 		'--enable-intl',
@@ -285,7 +285,7 @@ sub create_dso_ini_files {
 	@dso_names = grep {$_} map {$_->php_dso_extension_names()} $self->dependants();
 	$self->shell({silent => 0}, "echo 'extension=$_.so' > $prefix/php.d/50-extension-$_.ini") foreach (@dso_names);
 
-	my @zend_names = grep {$_} map {$_->php_zend_extension_names()} $self->dependants();
+	@zend_names = grep {$_} map {$_->php_zend_extension_names()} $self->dependants();
 	$self->shell({silent => 0}, "echo 'zend_extension=$prefix/$extdir/$_.so' > $prefix/php.d/50-extension-$_.ini") foreach (@zend_names);
 
 	$self->shell({silent => 0}, qq!echo 'extension_dir=$prefix/$extdir' > $prefix/php.d/10-extension_dir.ini!);
@@ -445,13 +445,5 @@ sub mpkg_filename {
 	my $version = $self->config()->version() . '-' . $self->config()->release();
 	return "entropy-php.mpkg";
 }
-
-
-
-
-
-
-
-
 
 1;

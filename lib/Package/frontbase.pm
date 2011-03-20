@@ -5,7 +5,7 @@ use warnings;
 
 use base qw(PackageBinary);
 
-our $VERSION = '4.2.4';
+our $VERSION = '4.2.9';
 
 
 # http://www.frontbase.com/download/Download_4.2.4/MacOSX-10.4u/FrontBase-MacOSX-4.2.4.dmg

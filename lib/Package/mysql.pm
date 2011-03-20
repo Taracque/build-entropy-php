@@ -5,7 +5,7 @@ use warnings;
 
 use base qw(Package);
 
-our $VERSION = '5.1.41';
+our $VERSION = '5.5.10';
 
 
 sub init {
@@ -16,7 +16,7 @@ sub init {
 
 
 sub base_url {
-	return "ftp://ftp.solnet.ch/mirror/mysql/Downloads/MySQL-5.1/";
+	return "ftp://ftp.solnet.ch/mirror/mysql/Downloads/MySQL-5.5/";
 }
 
 

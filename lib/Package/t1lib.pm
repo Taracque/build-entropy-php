@@ -9,7 +9,7 @@ our $VERSION = '5.1.2';
 
 
 sub base_url {
-	return "ftp://sunsite.unc.edu/pub/Linux/libs/graphics";
+	return "http://www.ibiblio.org/pub/Linux/libs/graphics";
 }
 
 
