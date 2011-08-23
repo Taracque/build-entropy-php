@@ -5,12 +5,11 @@ use warnings;
 
 use base qw(Package);
 
-our $VERSION = '4.6.1';
+our $VERSION = '4.8.1';
 
 sub base_url {
-	return "http://download.icu-project.org/files/icu4c/" . $VERSION . "/";
+	return "http://netcologne.dl.sourceforge.net/project/icu/ICU4C/$VERSION/";
 }
-
 
 sub packagename {
 	return "icu/source";

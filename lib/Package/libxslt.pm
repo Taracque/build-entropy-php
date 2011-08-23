@@ -15,7 +15,7 @@ sub dependency_names {
 
 
 sub base_url {
-	return "ftp://fr.rpmfind.net/pub/libxml";
+	return "ftp://xmlsoft.org/libxml2";
 }
 
 

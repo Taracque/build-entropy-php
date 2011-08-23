@@ -15,10 +15,8 @@ use base qw(Package);
 # switch to pdflib 7
 
 sub base_url {
-#	return "http://us2.php.net/distributions";
-	return "http://downloads.php.net/johannes";
+	return "http://hu.php.net/distributions";
 }
-
 
 sub packagename {
 	my $self = shift @_;
