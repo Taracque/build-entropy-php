@@ -29,7 +29,7 @@ sub subpath_for_check {
 sub make_command {
 	my $self = shift @_;
 	my $cflags = $self->cflags();
-	return qq(MACOSX_DEPLOYMENT_TARGET=10.6 EXTRACFLAGS="$cflags" make);
+	return qq(MACOSX_DEPLOYMENT_TARGET=10.6 EXTRACFLAGS="$cflags" ENABLE_RPATH="YES" make);
 }
 
 sub php_extension_configure_flags {
@@ -38,11 +38,6 @@ sub php_extension_configure_flags {
 	my (%args) = @_;
 	
 	return "--with-icu-dir=" . $self->config()->prefix();
-}
-
-sub patchfiles {
-	my $self = shift @_;
-	return qw(icu-config.patch);
 }
 
 1;

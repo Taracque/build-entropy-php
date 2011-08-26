@@ -1,6 +1,6 @@
-diff -ru imap-2007e/Makefile imap-2007e.entropy/Makefile
---- imap-2007e/Makefile	2008-06-04 20:43:35.000000000 +0200
-+++ imap-2007e.entropy/Makefile	2008-06-04 20:43:35.000000000 +0200
+diff -ru imap-2007f/Makefile imap-2007f.entropy/Makefile
+--- imap-2007f/Makefile	2008-06-04 20:43:35.000000000 +0200
++++ imap-2007f.entropy/Makefile	2008-06-04 20:43:35.000000000 +0200
 @@ -418,7 +418,7 @@
  	$(TOUCH) ip6
  	$(BUILD) BUILDTYPE=osx IP=$(IP6) EXTRAAUTHENTICATORS="$(EXTRAAUTHENTICATORS) gss" \
