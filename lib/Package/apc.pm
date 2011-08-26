@@ -57,7 +57,7 @@ sub configure_flags {
 	my $self = shift @_;
 	return join " ", (
 		$self->SUPER::configure_flags(@_),
-		'--enable-apc --with-apxs --with-php-config=' . $self->install_prefix() . '/bin/php-config'
+		'--enable-apc --with-apxs --enable-apc-spinlocks --disable-apc-pthreadmutex --with-php-config=' . $self->install_prefix() . '/bin/php-config'
 	);
 }
 
