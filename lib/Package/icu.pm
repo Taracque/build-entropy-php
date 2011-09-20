@@ -26,24 +26,26 @@ sub subpath_for_check {
 	return "lib/libicui18n.dylib";
 }
 
+sub make_flags {
+	return '';
+}
+
 sub build_arch {
 	my $self = shift @_;
 	my (%args) = @_;
 
+	$self->{current_arch} = $args{arch};
 	my $cflags = $self->cflags();
 	my $ldflags = $self->ldflags();
-	my $cxxflags = $self->compiler_archflags();
-	my $archflags = $self->compiler_archflags();
-
-	my $prefix = $self->config()->prefix();
 
 	$self->cd_packagesrcdir();
 #	$self->shell("MACOSX_DEPLOYMENT_TARGET=" . $self->config()->target_os() . " CFLAGS=\"" . $cflags . "\" LDFLAGS='" . $ldflags ."' CXXFLAGS='" . $cxxflags . "' CC='" . $cc . " " . $archflags . "' CPP='cpp' ./runConfigureICU MacOSX --with-library-bits=32 --disable-samples --enable-static " . $self->configure_flags());
 	if ($args{arch} eq 'x86_64') {
-		$self->shell("MACOSX_DEPLOYMENT_TARGET=" . $self->config()->target_os() . " CFLAGS='$cflags' LDFLAGS='$ldflags' CC='cc -arch $args{arch} -DENTROPY_CH_RELEASE=" . $self->config()->release() . "' CXX='c++ -arch $args{arch}' CPP='cpp' ./runConfigureICU MacOSX --with-library-bits=64 --disable-samples --enable-static " . $self->configure_flags());
+		$self->shell("MACOSX_DEPLOYMENT_TARGET=" . $self->config()->target_os() . " CFLAGS='$cflags' LDFLAGS='$ldflags' CC='cc -arch $args{arch} -DENTROPY_CH_RELEASE=" . $self->config()->release() . "' CXX='c++ -arch $args{arch}' CPP='cpp' ./runConfigureICU MacOSX --with-library-bits=64 --disable-samples --enable-static " . $self->configure_flags(arch => $args{arch}));
 	} else {
-		$self->shell("MACOSX_DEPLOYMENT_TARGET=" . $self->config()->target_os() . " CFLAGS='$cflags' LDFLAGS='$ldflags' CC='cc -arch $args{arch} -DENTROPY_CH_RELEASE=" . $self->config()->release() . "' CXX='c++ -arch $args{arch}' CPP='cpp' ./runConfigureICU MacOSX --with-library-bits=32 --disable-samples --enable-static " . $self->configure_flags());
+		$self->shell("MACOSX_DEPLOYMENT_TARGET=" . $self->config()->target_os() . " CFLAGS='$cflags' LDFLAGS='$ldflags' CC='cc -arch $args{arch} -DENTROPY_CH_RELEASE=" . $self->config()->release() . "' CXX='c++ -arch $args{arch}' CPP='cpp' ./runConfigureICU MacOSX --with-library-bits=32 --disable-samples --enable-static " . $self->configure_flags(arch => $args{arch}));
 	}
+	$self->build_arch_make(%args);
 }
 
 sub build_arch_make {
