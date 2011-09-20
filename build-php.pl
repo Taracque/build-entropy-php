@@ -19,25 +19,26 @@ check_arch();
 check_ltdl();
 
 my $config = Config->new(
-	cpus                 => 2,
-	basedir              => $basedir,
-	prefix               => '/usr/local/php5',
-	orahome              => "$basedir/install",
-	pdflib_lite          => 1,
-	mysql_install_prefix => undef,
-	variants             => {
-		apache1          => {
-			apxs_option  => '--with-apxs',
-			suffix       => '',
+	cpus					=> 2,
+	basedir					=> $basedir,
+	prefix					=> '/usr/local/php5',
+	orahome					=> "$basedir/install",
+	pdflib_lite				=> 1,
+	mysql_install_prefix	=> undef,
+	variants				=> {
+		apache1				=> {
+			apxs_option		=> '--with-apxs',
+			suffix			=> '',
 		},
-		apache2          => {
-			apxs_option  => '--with-apxs2=/usr/sbin/apxs',
-			suffix       => '-apache2',
+		apache2				=> {
+			apxs_option		=> '--with-apxs2=/usr/sbin/apxs',
+			suffix			=> '-apache2',
 		},
 	},
-	version              => '5.3.8',
-	release              => 0,
-	debug                => 0,
+	version					=> '5.3.8',
+	release					=> 0,
+	debug					=> 0,
+	target_os				=> '10.6'
 );
 
 # my $php5 = Package::php5->new(config => $config, variant => 'apache2');

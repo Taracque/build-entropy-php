@@ -46,7 +46,7 @@ sub build_configure {
 	my $cc = $self->cc();
 
 	my $prefix = $self->config()->prefix();
-	$self->shell(qq(MACOSX_DEPLOYMENT_TARGET=10.5 CFLAGS="$cflags" LDFLAGS='$ldflags' CXXFLAGS='$cxxflags' CC='$cc $archflags' CPP='cpp' ./configure ) . $self->configure_flags());
+	$self->shell("MACOSX_DEPLOYMENT_TARGET=" . $self->config()->target_os() . " CFLAGS=\"" . $cflags . "\" LDFLAGS='" . $ldflags ."' CXXFLAGS='" . $cxxflags . "' CC='" . $cc . " " . $archflags . "' CPP='cpp' ./configure " . $self->configure_flags());
 }
 
 

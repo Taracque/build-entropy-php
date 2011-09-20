@@ -345,7 +345,7 @@ sub make_flags {
 
 sub make_command {
 	my $self = shift @_;
-	return "MACOSX_DEPLOYMENT_TARGET=10.6 make " . $self->make_flags();
+	return "MACOSX_DEPLOYMENT_TARGET=" . $self->config()->target_os() . " make " . $self->make_flags();
 }
 
 

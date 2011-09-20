@@ -22,7 +22,7 @@ sub subpath_for_check {
 sub make_command {
 	my $self = shift @_;
 	my $cflags = $self->cflags();
-	return qq(MACOSX_DEPLOYMENT_TARGET=10.6 EXTRACFLAGS="$cflags" make);
+	return "MACOSX_DEPLOYMENT_TARGET=" . $self->config()->target_os() . " EXTRACFLAGS=\"" . $cflags ."\" make";
 }
 
 sub php_extension_configure_flags {

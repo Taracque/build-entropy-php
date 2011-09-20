@@ -34,7 +34,7 @@ sub dependency_names {
 	#tidy 
 	#ming
 	#mysql (replaced by mysqlnd)
-	return qw(iconv pdflib_commercial mssql memcache imapcclient libxml2 libxslt gettext curl libpng libjpeg libfreetype  postgresql mcrypt aspell);
+	return qw(iconv pdflib_commercial mssql memcache imapcclient libxml2 libxslt gettext curl libpng libjpeg libfreetype  postgresql mcrypt aspell icu);
 }
 
 sub dependant_names {
@@ -93,12 +93,11 @@ sub configure_flags {
 		'--with-mysqli=mysqlnd',
 		'--with-pdo-mysql=mysqlnd',
 		'--with-tidy',
+		'--with-icu-dir=/usr/local/php5',
+		'--enable-intl',
 #		'--enable-cgi',
 #		'--enable-fastcgi',
 	);
-
-# 		'--enable-intl',
-#		'--with-icu-dir=/usr/local/php5',
 
 #		'--with-snmp=/usr', #32 bit only in leopard
 
@@ -316,7 +315,8 @@ sub create_distimage {
 
 sub patchfiles {
 	my $self = shift @_;
-	return qw(php-entropy.patch ltmain-echo.patch php-tidy.patch);
+	return qw(php-entropy.patch php-tidy.patch);
+#	return qw(php-entropy.patch ltmain-echo.patch php-tidy.patch);
 #	return qw(php-entropy.patch php-entropy-imap.patch php-mysqlnd-ppc64.patch);
 }
 
