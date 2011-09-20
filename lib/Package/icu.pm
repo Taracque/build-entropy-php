@@ -3,7 +3,7 @@ package Package::icu;
 use strict;
 use warnings;
 
-use base qw(Package);
+use base qw(PackageSplice);
 
 our $VERSION = '4.8.1';
 
@@ -26,20 +26,27 @@ sub subpath_for_check {
 	return "lib/libicui18n.dylib";
 }
 
-sub build_configure {
+sub build_arch {
 	my $self = shift @_;
+	my (%args) = @_;
 
 	my $cflags = $self->cflags();
 	my $ldflags = $self->ldflags();
 	my $cxxflags = $self->compiler_archflags();
 	my $archflags = $self->compiler_archflags();
-	my $cc = $self->cc();
 
 	my $prefix = $self->config()->prefix();
-	$self->shell("MACOSX_DEPLOYMENT_TARGET=" . $self->config()->target_os() . " CFLAGS=\"" . $cflags . "\" LDFLAGS='" . $ldflags ."' CXXFLAGS='" . $cxxflags . "' CC='" . $cc . " " . $archflags . "' CPP='cpp' ./runConfigureICU MacOSX  --disable-samples --enable-static " . $self->configure_flags());
+
+	$self->cd_packagesrcdir();
+#	$self->shell("MACOSX_DEPLOYMENT_TARGET=" . $self->config()->target_os() . " CFLAGS=\"" . $cflags . "\" LDFLAGS='" . $ldflags ."' CXXFLAGS='" . $cxxflags . "' CC='" . $cc . " " . $archflags . "' CPP='cpp' ./runConfigureICU MacOSX --with-library-bits=32 --disable-samples --enable-static " . $self->configure_flags());
+	if ($args{arch} eq 'x86_64') {
+		$self->shell("MACOSX_DEPLOYMENT_TARGET=" . $self->config()->target_os() . " CFLAGS='$cflags' LDFLAGS='$ldflags' CC='cc -arch $args{arch} -DENTROPY_CH_RELEASE=" . $self->config()->release() . "' CXX='c++ -arch $args{arch}' CPP='cpp' ./runConfigureICU MacOSX --with-library-bits=64 --disable-samples --enable-static " . $self->configure_flags());
+	} else {
+		$self->shell("MACOSX_DEPLOYMENT_TARGET=" . $self->config()->target_os() . " CFLAGS='$cflags' LDFLAGS='$ldflags' CC='cc -arch $args{arch} -DENTROPY_CH_RELEASE=" . $self->config()->release() . "' CXX='c++ -arch $args{arch}' CPP='cpp' ./runConfigureICU MacOSX --with-library-bits=32 --disable-samples --enable-static " . $self->configure_flags());
+	}
 }
 
-sub make_command {
+sub build_arch_make {
 	my $self = shift @_;
 	my $cflags = $self->cflags();
 	return "MACOSX_DEPLOYMENT_TARGET=" . $self->config()->target_os() . " EXTRACFLAGS=\"" . $cflags . "\" ENABLE_RPATH=\"YES\" make";

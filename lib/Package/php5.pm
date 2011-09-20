@@ -34,7 +34,7 @@ sub dependency_names {
 	#tidy 
 	#ming
 	#mysql (replaced by mysqlnd)
-	return qw(iconv pdflib_commercial mssql memcache imapcclient libxml2 libxslt gettext curl libpng libjpeg libfreetype  postgresql mcrypt aspell icu);
+	return qw(iconv pdflib_commercial mssql memcache imapcclient libxml2 libxslt gettext curl libpng libjpeg libfreetype  postgresql mcrypt aspell icu t1lib);
 }
 
 sub dependant_names {
@@ -95,6 +95,7 @@ sub configure_flags {
 		'--with-tidy',
 		'--with-icu-dir=/usr/local/php5',
 		'--enable-intl',
+		'--with-t1lib',
 #		'--enable-cgi',
 #		'--enable-fastcgi',
 	);
@@ -294,8 +295,8 @@ sub post_install {
 	my $self = shift @_;
 	return undef if ($self->is_built());
 	
-	my $path = $self->extras_path("ltmain-echo-back.patch");
-	$self->shell("patch -p0 < $path");
+#	my $path = $self->extras_path("ltmain-echo-back.patch");
+#	$self->shell("patch -p0 < $path");
 	
 	$self->unpack();
 	$_->build() foreach $self->dependants();
