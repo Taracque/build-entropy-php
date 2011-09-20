@@ -94,13 +94,13 @@ sub configure_flags {
 		'--with-pdo-mysql=mysqlnd',
 		'--with-tidy',
 		'--with-icu-dir=/usr/local/php5',
-		'--enable-intl',
 		'--with-t1lib',
 #		'--enable-cgi',
 #		'--enable-fastcgi',
 	);
 
 #		'--with-snmp=/usr', #32 bit only in leopard
+#		'--enable-intl',
 
 # 		"--enable-dbx",
 # 		"--enable-dbase",
@@ -295,8 +295,8 @@ sub post_install {
 	my $self = shift @_;
 	return undef if ($self->is_built());
 	
-#	my $path = $self->extras_path("ltmain-echo-back.patch");
-#	$self->shell("patch -p0 < $path");
+	my $path = $self->extras_path("ltmain-echo-back.patch");
+	$self->shell("patch -p0 < $path");
 	
 	$self->unpack();
 	$_->build() foreach $self->dependants();
@@ -316,8 +316,8 @@ sub create_distimage {
 
 sub patchfiles {
 	my $self = shift @_;
-	return qw(php-entropy.patch php-tidy.patch);
-#	return qw(php-entropy.patch ltmain-echo.patch php-tidy.patch);
+#	return qw(php-entropy.patch php-tidy.patch);
+	return qw(php-entropy.patch ltmain-echo.patch php-tidy.patch);
 #	return qw(php-entropy.patch php-entropy-imap.patch php-mysqlnd-ppc64.patch);
 }
 
