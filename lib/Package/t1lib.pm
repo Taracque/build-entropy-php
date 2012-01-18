@@ -50,16 +50,4 @@ sub php_extension_configure_flags {
 
 }
 
-sub package_filelist {
-	my $self = shift @_;
-	
-	return qw(
-		lib/libt1*.dylib
-		share/t1lib
-	);
-}
-
-
-
-
 1;

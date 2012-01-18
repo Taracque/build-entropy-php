@@ -367,6 +367,7 @@ sub package_filelist {
 		libphp5.so
 		etc/pear.conf.default
 		lib/libpng*.dylib lib/libfreetype*.dylib
+		lib/libt1*.dylib
 		lib/libxml2*.dylib lib/libiconv*.dylib
 		lib/libjpeg*.dylib lib/libaspell*.dylib lib/libpspell*.dylib lib/libintl*.dylib
 		bin/php* bin/pear bin/pecl bin/peardev bin/activate-*
@@ -377,7 +378,7 @@ sub package_filelist {
 		php.d/10-extension_dir.ini
 	);
 
-	# lib/libt1*.dylib lib/libicu*.dylib
+	# lib/libicu*.dylib
 }
 
 sub package_excludelist {
