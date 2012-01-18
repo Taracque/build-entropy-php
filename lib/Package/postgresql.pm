@@ -5,7 +5,7 @@ use warnings;
 
 use base qw(PackageSplice);
 
-our $VERSION = '8.4.8';
+our $VERSION = '8.4.10';
 
 
 sub base_url {
