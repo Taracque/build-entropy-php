@@ -95,12 +95,12 @@ sub configure_flags {
 		'--with-tidy',
 		'--with-icu-dir=/usr/local/php5',
 		'--with-t1lib',
+        '--enable-intl',
 #		'--enable-cgi',
 #		'--enable-fastcgi',
 	);
 
 #		'--with-snmp=/usr', #32 bit only in leopard
-#		'--enable-intl',
 
 # 		"--enable-dbx",
 # 		"--enable-dbase",
