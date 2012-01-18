@@ -95,7 +95,7 @@ sub configure_flags {
 		'--with-tidy',
 		'--with-icu-dir=/usr/local/php5',
 		'--with-t1lib',
-        '--enable-intl',
+#       '--enable-intl',
 #		'--enable-cgi',
 #		'--enable-fastcgi',
 	);
