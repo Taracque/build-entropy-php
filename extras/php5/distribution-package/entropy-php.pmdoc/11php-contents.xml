@@ -1,0 +1,11 @@
+<pkg-contents spec="1.12">
+	<f n="PackageRoot" o="root" g="wheel" p="16877" pt="." m="true" t="bom">
+		<f n="modules" o="root" g="wheel" p="16877">
+			<f n="intl.so" o="root" g="wheel" p="33261" c="true"/>
+		</f>
+		<f n="php.d" o="root" g="wheel" p="16877">
+			<f n="50-extension-intl.ini" o="root" g="wheel" p="33188"/>
+		</f>
+		<mod>name</mod>
+	</f>
+</pkg-contents>

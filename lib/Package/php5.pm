@@ -38,7 +38,7 @@ sub dependency_names {
 }
 
 sub dependant_names {
-	return qw(apc xdebug);
+	return qw(apc xdebug intl);
 }
 
 sub subpath_for_check {
@@ -95,7 +95,7 @@ sub configure_flags {
 		'--with-tidy',
 		'--with-icu-dir=/usr/local/php5',
 		'--with-t1lib',
-#       '--enable-intl',
+#		'--enable-intl',
 #		'--enable-cgi',
 #		'--enable-fastcgi',
 	);

@@ -62,4 +62,14 @@ sub php_extension_configure_flags {
 	return "--with-icu-dir=" . $self->config()->prefix();
 }
 
+sub package_filelist {
+
+	my $self = shift @_;
+	
+	return qw(
+		lib/libicu*.dylib
+	);
+}
+
+
 1;
