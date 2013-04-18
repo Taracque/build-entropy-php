@@ -9,7 +9,7 @@ our $VERSION = '0.82';
 
 
 sub base_url {
-	return "http://ibiblio.org/pub/Linux/ALPHA/freetds/old/$VERSION/";
+	return "http://mirrors.ibiblio.org/freetds/old/$VERSION";
 }
 
 

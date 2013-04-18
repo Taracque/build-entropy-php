@@ -38,7 +38,7 @@ sub dependency_names {
 }
 
 sub dependant_names {
-	return qw(apc intl);
+	return qw(apc intl xdebug);
 }
 
 sub subpath_for_check {
