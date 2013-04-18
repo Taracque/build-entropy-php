@@ -5,7 +5,7 @@ use warnings;
 
 use base qw(Package);
 
-our $VERSION = '7.30.0';
+our $VERSION = '7.17.1';
 
 
 
@@ -28,6 +28,7 @@ sub subpath_for_check {
 
 
 #CFLAGS='-arch i386 -arch x86_64 -arch ppc7400 -arch ppc64' LDFLAGS='-arch i386 -arch x86_64 -arch ppc7400 -arch ppc64' CC='cc -DENTROPY_CH_RELEASE=2' ./configure --disable-dependency-tracking --prefix=/usr/local/php5 --enable-ldaps
+#CFLAGS="-arch i386 -arch x86_64" LDFLAGS='-L/usr/local/php5/lib -arch i386 -arch x86_64' CXXFLAGS='-arch i386 -arch x86_64' CPPFLAGS="-I/usr/local/php5/include" CC='cc' ./configure --disable-dependency-tracking --prefix=/usr/local/php5 --enable-ldaps
 
 sub configure_flags {
 	my $self = shift @_;
